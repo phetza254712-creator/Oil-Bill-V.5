@@ -1,0 +1,47 @@
+{
+  "name": "oil-bill-v5",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Oil Bill V5 - fuel receipt management for Windows and Android",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js",
+    "desktop": "electron .",
+    "desktop:build": "npm run build && electron-builder --win nsis portable --publish never",
+    "android:add": "cap add android",
+    "android:sync": "npm run build && cap sync android",
+    "android:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "mammoth": "^1.9.0",
+    "pdfjs-dist": "^5.4.149",
+    "tesseract.js": "^6.0.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12",
+    "vite": "^7.0.6"
+  },
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "th.oilbill.v5",
+    "productName": "Oil Bill V5",
+    "directories": { "output": "release" },
+    "files": ["dist/**/*", "electron/**/*", "package.json"],
+    "win": {
+      "target": ["nsis", "portable"],
+      "artifactName": "Oil-Bill-V5-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

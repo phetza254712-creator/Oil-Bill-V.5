@@ -1,0 +1,6 @@
+{
+  "appId": "th.oilbill.v5",
+  "appName": "Oil Bill V5",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
